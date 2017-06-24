@@ -3,9 +3,7 @@ const app = express();
 
 const https = require('https');
 
-app.get('/', function(req, res){
-  res.sendFile('index.html', { root: './app'});
-});
+app.use('/', express.static('app'))
 
 app.listen(8000, function(){
   console.log('Really Now listening on port 8000')
@@ -21,7 +19,7 @@ app.get('/input', function(req, res){
     radius: 2,
   }
   let requestURL = `https://search.onboard-apis.com/propertyapi/v1.0.0/Resource/Package?${parameter}`
-  
+
   https.get(requestURL, function(res){
     console.log(res);
   });
